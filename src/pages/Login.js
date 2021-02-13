@@ -8,7 +8,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    firebase.auth().signInWirhEmailAndPassword(email, password).then((user) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).then((user) => {
       console.log(user)
     })
       .catch((error) => {
@@ -30,7 +30,7 @@ const Login = () => {
     name='email'
     placeholder='Email'
     onChange={e => {
-      setEmail(e.target.email)
+      setEmail(e.target.value)
     }}
     />
     </div>
@@ -42,7 +42,7 @@ const Login = () => {
     name='password'
     placeholder='password'
     onChange={e => {
-      setPassword(e.target.password)
+      setPassword(e.target.value)
     }}
     />
     </div>

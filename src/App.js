@@ -6,7 +6,7 @@ import {
   Route
 } from 'react-router-dom'
 
-import AuthProvider from './AuthService'
+import {AuthProvider} from './AuthService'
 
 import Room from './pages/Room'
 import Login from './pages/Login'

@@ -1,15 +1,15 @@
-import firebase from './firebase' 
+import firebase from './firebase'
 
 
-
-const FacebookProvider = new firebase.auth.FacebookAuthProvider()
- FacebookProvider.addScope('user_birthday')
- firebase.auth().signInWithRedirect(FacebookProvider)
-        .then(data => {
-          console.log(data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-
+const FacebookProvider = () => {
+  const provider = new firebase.auth.FacebookAuthProvider()
+  provider.addScope('user_birthday')
+  firebase.auth().signInWithRedirect(provider)
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+};
 export default FacebookProvider

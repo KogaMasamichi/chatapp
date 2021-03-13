@@ -1,7 +1,7 @@
-import {useState, useContext} from 'react'
-import {Redirect} from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { Redirect } from 'react-router-dom'
 import firebase from '../config/firebase'
-import {AuthContext} from '../AuthService'
+import { AuthContext } from '../AuthService'
 import FacebookProvider from '../config/SNSSignIn'
 
 const SignUp = () => {
@@ -11,18 +11,18 @@ const SignUp = () => {
 
   const user = useContext(AuthContext)
 
-  if(user) {
+  if (user) {
     return <Redirect to={'/'} />
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(({user}) => {
+      .then(({ user }) => {
         user.updateProfile({
           displayName: name
         })
-    })
+      })
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -48,7 +48,7 @@ const SignUp = () => {
         </div>
         <div>
           <label htmlFor="email">E-mail</label>
-          <input 
+          <input
             name='email'
             type="email"
             id='email'
@@ -56,11 +56,11 @@ const SignUp = () => {
             onChange={e => {
               setEmail(e.target.value)
             }}
-            />
+          />
         </div>
         <div>
           <label htmlFor="password">Password</label>
-            <input 
+          <input
             name='password'
             type="password"
             id='password'
@@ -68,10 +68,10 @@ const SignUp = () => {
             onChange={e => {
               setPassword(e.target.value)
             }}
-            />
+          />
         </div>
         <button type='submit'>Sign Up</button>
-      </form>        
+      </form>
       <button onClick={FacebookProvider}>Facebookでログイン</button>
 
     </div>

@@ -2,6 +2,7 @@ import {useState, useContext} from 'react'
 import {Redirect} from 'react-router-dom'
 import firebase from '../config/firebase'
 import {AuthContext} from '../AuthService'
+import FacebookProvider from '../config/SNSSignIn'
 
 const SignUp = () => {
   const [email, setEmail] = useState('')
@@ -70,7 +71,9 @@ const SignUp = () => {
             />
         </div>
         <button type='submit'>Sign Up</button>
-      </form>
+      </form>        
+      <button onClick={FacebookProvider}>Facebookでログイン</button>
+
     </div>
   )
 }

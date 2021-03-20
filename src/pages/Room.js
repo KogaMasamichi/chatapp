@@ -21,7 +21,7 @@ const Room = () => {
   }, [])
 
   const user = useContext(AuthContext)
-
+  console.log(user)
   const handleSubmit = (e) => {
     e.preventDefault()
     if(value.trim()) {
@@ -29,7 +29,8 @@ const Room = () => {
       .add({
         timeStamp: new Date(),
         content: value,
-        user: user.displayName
+        user: user.displayName,
+        url: user.photoURL
       })
       setValue('')
     }else{

@@ -13,7 +13,7 @@ const Messages = ({message}) => {
   return (
 
       <li>
-        {message.user} : {message.content} <button onClick={handleDelete}>削除</button>
+        <img src={message.url} /> {message.user} : {message.content} <button onClick={handleDelete}>削除</button>
       </li>
   )
   

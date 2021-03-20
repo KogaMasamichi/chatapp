@@ -3,13 +3,13 @@ import firebase from "./config/firebase";
 const Messages = ({message}) => {
 
   const handleDelete = () => {
-    firebase.firestore().collection("messages").doc(id).delete().then(() => {
+    firebase.firestore().collection("messages").doc(message.id).delete().then(() => {
       console.log("Document successfully deleted!");
   }).catch((error) => {
       console.error("Error removing document: ", error);
   });
   }
-
+  
   return (
 
       <li>

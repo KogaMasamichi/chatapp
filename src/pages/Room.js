@@ -11,7 +11,10 @@ const Room = () => {
     firebase.firestore().collection('messages').orderBy('timeStamp', 'asc')
       .onSnapshot((snapshot) => {
         const messages = snapshot.docs.map(doc => {
-          return doc.data()
+          return {
+            id: doc.id,
+            ...doc.data()
+          }
         })
         setMessages(messages)
       })
@@ -33,8 +36,6 @@ const Room = () => {
       alert('文字が入力されていません')
   }}
 
-    console.log(user.displayName)
-
   return (
     <>
       <h1>Room</h1>
@@ -42,7 +43,7 @@ const Room = () => {
             {
               messages.map(message => {
                 return (
-                  <Messages message={message} />
+                  <Messages message={message} key={message.id} />
                 )
               })
             }

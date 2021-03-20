@@ -18,5 +18,5 @@ const Messages = ({message}) => {
   )
   
 }
- 
+
 export default Messages

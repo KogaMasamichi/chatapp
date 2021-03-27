@@ -8,19 +8,30 @@ const SignUp = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
-
+  const [icon, setIcon] = useState('');
+  console.log(icon)
   const user = useContext(AuthContext)
 
   if (user) {
     return <Redirect to={'/'} />
   }
 
+  const storageRef = firebase.storage().ref();
+
   const handleSubmit = (e) => {
     e.preventDefault()
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
-        user.updateProfile({
-          displayName: name
+        console.log(user)
+        const iconsRef = storageRef.child(`icons/${user.uid}`);
+        iconsRef.put(icon).then(function(snapshot) {
+          console.log('Uploaded a blob or file!');
+          iconsRef.getDownloadURL().then(url => {
+            user.updateProfile({
+              displayName: name,
+              photoURL: url
+            })
+          })
         })
       })
       .catch((error) => {
@@ -67,6 +78,18 @@ const SignUp = () => {
             placeholder='Password'
             onChange={e => {
               setPassword(e.target.value)
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="icon-image">Icon</label>
+          <input
+            type="file"
+            name='icon-image'
+            id='icon-image'
+            onChange={e => {
+             setIcon(e.target.files[0]) 
+              console.log(e.target)
             }}
           />
         </div>
